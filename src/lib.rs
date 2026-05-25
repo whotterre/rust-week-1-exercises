@@ -107,7 +107,9 @@ pub fn get_tx_status(tx_pool: &HashMap<String, String>, txid: &str) -> String {
 pub fn unpack_wallet_info(wallet_info: (String, f64)) -> String {
     // TODO: Destructure the tuple into (name, balance) and format the result
     // Expected format: "Wallet <name> has balance: <balance> BTC"
-    todo!()
+    let (name, balance) = wallet_info;
+
+    format!("Wallet {name} has balance: {balance} BTC")
 }
 
 /// Convert BTC to satoshis (1 BTC = 100,000,000 sats).
