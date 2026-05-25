@@ -49,7 +49,7 @@ pub fn is_mainnet(network: &str) -> bool {
 /// Return true if value is in the inclusive range 100..=200.
 pub fn is_in_range(value: i64) -> bool {
     // TODO: Check if 100 <= value <= 200
-    todo!()
+    value >= 100 && value <= 200
 }
 
 /// Return true if both references point to the exact same object in memory.
