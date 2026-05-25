@@ -2,11 +2,11 @@ use std::collections::HashMap;
 
 // Name Assignment (variables and constants)
 // TODO: Assign the current bitcoin mining reward
-pub const MINING_REWARD: f64 = 3.125; 
+pub const MINING_REWARD: f64 = 3.125;
 // TODO: Assign the current block height
 pub const CURRENT_BLOCK_HEIGHT: u64 = 0;
 // TODO: Assign the number of satoshis in one Bitcoin
-pub const BTC_TO_SATS: u64 = 100_000_000; 
+pub const BTC_TO_SATS: u64 = 100_000_000;
 
 #[derive(Debug, Clone, PartialEq)]
 pub struct Utxo {
@@ -18,7 +18,7 @@ pub struct Utxo {
 /// Calculate the total Bitcoin reward for a given number of mined blocks.
 pub fn calculate_total_reward(blocks_mined: u64) -> f64 {
     // TODO: Multiply blocks_mined by MINING_REWARD and return result
-    todo!()
+    (blocks_mined as f64 * MINING_REWARD) as f64
 }
 
 /// Return true if the transaction fee is between 0.00001 and 0.01 BTC.
