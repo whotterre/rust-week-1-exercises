@@ -148,7 +148,14 @@ pub fn create_utxo(
 ) -> HashMap<String, String> {
     // TODO: Build a base map with "txid" and "vout" (as string)
     // TODO: Merge extra into the base map and return
-    todo!()
+    let mut map:HashMap<String, String> = HashMap::new();
+    map.insert(String::from("txid"), String::from(txid));
+    map.insert(String::from("vout"), vout.to_string());
+    // Idempotency check before inserting it - right?
+    for (key, value) in extra {
+        map.insert(key, value);
+    }
+    map
 }
 
 // Implement extract_tx_version function below
