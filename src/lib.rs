@@ -5,7 +5,7 @@ use std::ptr::eq;
 // TODO: Assign the current bitcoin mining reward
 pub const MINING_REWARD: f64 = 3.125;
 // TODO: Assign the current block height
-pub const CURRENT_BLOCK_HEIGHT: u64 = 0;
+pub const CURRENT_BLOCK_HEIGHT: u64 = 210_000;
 // TODO: Assign the number of satoshis in one Bitcoin
 pub const BTC_TO_SATS: u64 = 100_000_000;
 
@@ -82,8 +82,14 @@ pub fn add_utxo(mut utxos: Vec<Utxo>, new_utxo: Utxo) -> Vec<Utxo> {
 /// Find the first transaction with a fee greater than 0.005 BTC.
 pub fn find_high_fee(fee_list: &[f64]) -> Option<(usize, f64)> {
     // TODO: Iterate with enumerate and return the first (index, fee) where fee > 0.005
-    todo!()
-}
+    let mut high_fee: (usize, f64) = (0, 0.0);
+    for (i, fee) in fee_list.iter().enumerate() {
+        if *fee > 0.005 {
+            high_fee = (i, *fee);
+        }
+    }
+    Some(high_fee)
+}   
 
 /// Return basic wallet details as a tuple of (name, balance).
 pub fn get_wallet_details() -> (String, f64) {
