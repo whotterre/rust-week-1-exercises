@@ -37,7 +37,14 @@ pub fn is_large_balance(balance: f64) -> bool {
 pub fn tx_priority(size_bytes: u64, fee_btc: f64) -> &'static str {
     // TODO: Calculate fee rate (fee_btc / size_bytes) and use if/else if/else
     // High: > 0.00005, Medium: > 0.00001, otherwise Low
-    todo!()
+    let fee_rate = fee_btc / size_bytes as f64;
+    if fee_rate > 0.00005 {
+        "High"
+    } else if fee_rate > 0.00001 {
+        "Medium"
+    } else {
+        "Low"
+    }
 }
 
 /// Return true if the network string equals "mainnet" (case-insensitive).
