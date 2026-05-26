@@ -191,6 +191,15 @@ pub fn create_utxo(
 }
 
 // Implement extract_tx_version function below
-pub fn extract_tx_version(_raw_tx_hex: &str) -> Result<u32, String> {
-    todo!()
+pub fn extract_tx_version(raw_tx_hex: &str) -> Result<u32, String> {
+    // Decode the hex string into bytes
+    let bytes = hex::decode(raw_tx_hex).map_err(|_| String::from("Hex decode error"))?;
+
+    if bytes.len() < 4 {
+        return Err(String::from("Transaction data too short"));
+    }
+
+    // Read first 4 bytes as little-endian u32
+    let version = u32::from_le_bytes([bytes[0], bytes[1], bytes[2], bytes[3]]);
+    Ok(version)
 }
