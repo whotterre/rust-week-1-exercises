@@ -134,7 +134,11 @@ pub fn validate_block_height(height: i64) -> (bool, String) {
     // TODO: Check that height is not negative
     // TODO: Check that height is within a realistic range (<= 800_000)
     // TODO: Return (true, "Valid block height") otherwise
-    todo!()
+   if height > 0 && height <= 800_000 {
+    (true, String::from("Valid block height"))
+   } else {
+    (false, String::from("negative"))
+   }
 }
 
 /// Compute the block reward (in sats) for each block height based on the halving schedule.
