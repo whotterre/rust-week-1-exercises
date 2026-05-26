@@ -140,8 +140,10 @@ pub fn validate_block_height(height: i64) -> (bool, String) {
     // TODO: Return (true, "Valid block height") otherwise
    if height > 0 && height <= 800_000 {
     (true, String::from("Valid block height"))
-   } else {
+   } else if height < 0 {
     (false, String::from("negative"))
+   } else {
+    (false, String::from("unrealistic"))
    }
 }
 
