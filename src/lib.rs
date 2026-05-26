@@ -95,7 +95,8 @@ pub fn find_high_fee(fee_list: &[f64]) -> Option<(usize, f64)> {
 /// Return basic wallet details as a tuple of (name, balance).
 pub fn get_wallet_details() -> (String, f64) {
     // TODO: Return a tuple with wallet name and balance
-    todo!()
+    let tup: (String, f64) = (String::from("satoshi_wallet"), 50.0);
+    tup
 }
 
 /// Get the status of a transaction from the mempool or "not found".
@@ -149,7 +150,14 @@ pub fn halving_schedule(blocks: &[u64]) -> HashMap<u64, u64> {
     // TODO: Base reward is 50 * 100_000_000 sats; halving interval is 210_000 blocks
     // TODO: For each block: halvings = block / 210_000; reward = base >> halvings
     // TODO: Insert (block, reward) into the result HashMap
-    todo!()
+    let mut result: HashMap<u64, u64> = HashMap::new();
+    for (_, block) in blocks.iter().enumerate() {
+        let base_reward = 50 * 100_000_000;
+        let halvings = block / 210_000;
+        let reward = base_reward >> halvings;
+        result.insert(*block, reward);
+    }
+    result
 }
 
 /// Find the UTXO with the smallest value that meets or exceeds target.
