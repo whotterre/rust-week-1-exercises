@@ -128,7 +128,7 @@ pub fn generate_address(prefix: &str) -> String {
     // TODO: Concatenate prefix + suffix and return
     let suffix_length = 32 - prefix.len(); 
     let charset = "abcdefghijklmnopqrstuvwxyz0123456789";
-    let suffix = random_string::generate(suffix_length, charset);
+    let suffix = generate(suffix_length, charset);
     format!("{prefix}{suffix}")
 }
 
