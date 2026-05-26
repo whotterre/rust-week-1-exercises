@@ -1,6 +1,6 @@
+use random_string::generate;
 use std::collections::HashMap;
 use std::ptr::eq;
-use random_string::generate;
 
 // Name Assignment (variables and constants)
 // TODO: Assign the current bitcoin mining reward
@@ -88,8 +88,8 @@ pub fn find_high_fee(fee_list: &[f64]) -> Option<(usize, f64)> {
             return Some((i, *fee));
         }
     }
-   None
-}   
+    None
+}
 
 /// Return basic wallet details as a tuple of (name, balance).
 pub fn get_wallet_details() -> (String, f64) {
@@ -105,7 +105,7 @@ pub fn get_tx_status(tx_pool: &HashMap<String, String>, txid: &str) -> String {
         Some(status) => status.clone(),
         None => String::from("not found"),
     }
-} 
+}
 
 /// Destructure wallet_info and format a status string.
 pub fn unpack_wallet_info(wallet_info: (String, f64)) -> String {
@@ -126,7 +126,7 @@ pub fn calculate_sats(btc: f64) -> u64 {
 pub fn generate_address(prefix: &str) -> String {
     // TODO: Build a random suffix of (32 - prefix.len()) chars from [a-z0-9]
     // TODO: Concatenate prefix + suffix and return
-    let suffix_length = 32 - prefix.len(); 
+    let suffix_length = 32 - prefix.len();
     let charset = "abcdefghijklmnopqrstuvwxyz0123456789";
     let suffix = generate(suffix_length, charset);
     format!("{prefix}{suffix}")
@@ -137,13 +137,13 @@ pub fn validate_block_height(height: i64) -> (bool, String) {
     // TODO: Check that height is not negative
     // TODO: Check that height is within a realistic range (<= 800_000)
     // TODO: Return (true, "Valid block height") otherwise
-   if height > 0 && height <= 800_000 {
-    (true, String::from("Valid block height"))
-   } else if height < 0 {
-    (false, String::from("negative"))
-   } else {
-    (false, String::from("unrealistic"))
-   }
+    if height > 0 && height <= 800_000 {
+        (true, String::from("Valid block height"))
+    } else if height < 0 {
+        (false, String::from("negative"))
+    } else {
+        (false, String::from("unrealistic"))
+    }
 }
 
 /// Compute the block reward (in sats) for each block height based on the halving schedule.
@@ -180,7 +180,7 @@ pub fn create_utxo(
 ) -> HashMap<String, String> {
     // TODO: Build a base map with "txid" and "vout" (as string)
     // TODO: Merge extra into the base map and return
-    let mut map:HashMap<String, String> = HashMap::new();
+    let mut map: HashMap<String, String> = HashMap::new();
     map.insert(String::from("txid"), String::from(txid));
     map.insert(String::from("vout"), vout.to_string());
     // Idempotency check before inserting it - right?
@@ -192,5 +192,5 @@ pub fn create_utxo(
 
 // Implement extract_tx_version function below
 pub fn extract_tx_version(_raw_tx_hex: &str) -> Result<u32, String> {
-    Ok(0)
+    todo!()
 }
