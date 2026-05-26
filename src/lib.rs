@@ -1,5 +1,6 @@
 use std::collections::HashMap;
 use std::ptr::eq;
+use random_string::generate;
 
 // Name Assignment (variables and constants)
 // TODO: Assign the current bitcoin mining reward
@@ -122,7 +123,10 @@ pub fn calculate_sats(btc: f64) -> u64 {
 pub fn generate_address(prefix: &str) -> String {
     // TODO: Build a random suffix of (32 - prefix.len()) chars from [a-z0-9]
     // TODO: Concatenate prefix + suffix and return
-    todo!()
+    let suffix_length = 32 - prefix.len(); 
+    let charset = "abcdefghijklmnopqrstuvwxyz0123456789";
+    let suffix = random_string::generate(suffix_length, charset);
+    format!("{prefix}{suffix}")
 }
 
 /// Validate a Bitcoin block height. Returns (is_valid, message).
