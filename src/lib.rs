@@ -101,8 +101,11 @@ pub fn get_wallet_details() -> (String, f64) {
 /// Get the status of a transaction from the mempool or "not found".
 pub fn get_tx_status(tx_pool: &HashMap<String, String>, txid: &str) -> String {
     // TODO: Look up txid in tx_pool, returning the status or "not found"
-    todo!()
-}
+    match tx_pool.get(txid) {
+        Some(status) => status.clone(),
+        None => String::from("not found"),
+    }
+} 
 
 /// Destructure wallet_info and format a status string.
 pub fn unpack_wallet_info(wallet_info: (String, f64)) -> String {
