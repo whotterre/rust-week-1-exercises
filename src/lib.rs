@@ -156,7 +156,11 @@ pub fn halving_schedule(blocks: &[u64]) -> HashMap<u64, u64> {
 pub fn find_utxo_with_min_value(utxos: &[Utxo], target: u64) -> Option<Utxo> {
     // TODO: Filter UTXOs to those with value >= target
     // TODO: Return the one with the smallest value, or None if none qualify
-    todo!()
+    utxos
+        .iter()
+        .filter(|utxo| utxo.value >= target)
+        .min_by_key(|utxo| utxo.value)
+        .cloned()
 }
 
 /// Create a UTXO map from txid, vout, and arbitrary extra string fields.
